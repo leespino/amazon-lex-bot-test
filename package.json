@@ -9,6 +9,6 @@
   "author": "Amazon.com, Inc.",
   "license": "MIT-0",
   "dependencies": {
-    "aws-sdk": "^2.120.0"
+    "aws-sdk": "^2.652.0"
   }
 }

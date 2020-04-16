@@ -1,0 +1,19 @@
+{
+	"name": "HelpChatbotOpsHR_dev",
+	"description": "",
+	"botName": "HelpChatbotOpsHR_dev",
+	"botAlias": "dev",
+	"waitBetweenRequestsMillis":  0,
+	"sequences": [
+		{
+			"name": "cb_discountapply_dev",
+			"description": "",
+			"sequence": [
+				{
+					"utterance": "done",
+					"postConditions":{
+						"message":["I'm having trouble understanding what you need. Can you please ask another way?"]
+					}
+				}]
+		}]
+	}
