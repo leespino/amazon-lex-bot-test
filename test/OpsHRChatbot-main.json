@@ -1,12 +1,13 @@
 {
-	"name": "HelpChatbotOpsHR_dev",
+	"name": "HelpChatbotOpsHR_stg",
 	"description": "",
-	"botName": "HelpChatbotOpsHR_dev",
-	"botAlias": "dev",
+	"botName": "HelpChatbotOpsHR_stg",
+	"botAlias": "stg",
+
 	"waitBetweenRequestsMillis":  0,
 	"sequences": [
 		{
-			"name": "cb_discountapply_dev",
+			"name": "cb_discountapply_stg",
 			"description": "",
 			"sequence": [
 				{
@@ -15,5 +16,15 @@
 						"message":["I'm having trouble understanding what you need. Can you please ask another way?"]
 					}
 				}]
-		}]
+		},
+		{
+			"name":"cb_wageIncrease_stg",
+			"description":"",
+			"sequence":[
+				{
+					"utterance":"wage increase"
+				}
+			]
+		}
+	]
 	}

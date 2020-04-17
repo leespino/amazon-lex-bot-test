@@ -47,8 +47,10 @@ function recordFailure(botName, botAlias, sequence, params, lexResponse, request
 		params: params,
 		lexResponse: lexResponse
 	};
-
-	console.error(`-  Sequence [${sequence.name}] FAILED! ~ ${JSON.stringify(errorBlob)}`);
+	let errorRecord = `-  Sequence [${sequence.name}] - Test Result: FAILED! ~ ${JSON.stringify(errorBlob)}`
+	logger.write(errorRecord+"\n");
+	logger.write("\n");
+	//console.error(`-  Sequence [${sequence.name}] FAILED! ~ ${JSON.stringify(errorBlob)}`);
 }
 
 function recordSuccess(botName, botAlias, sequence, message) {
@@ -57,8 +59,10 @@ function recordSuccess(botName, botAlias, sequence, message) {
 		message: message,
 		sequence:  sequence
 	};
-
-	console.log(`+  Sequence [${sequence.name}] PASSED! ~ ${JSON.stringify(successBlob)}`);
+	let sucessRecord = `+  Sequence [${sequence.name}]  - Test Result: PASSED! ~ ${JSON.stringify(successBlob)}`
+	logger.write(sucessRecord+"\n");
+	logger.write("\n");
+	//console.log(`+  Sequence [${sequence.name}] PASSED! ~ ${JSON.stringify(successBlob)}`);
 }
 
 function checkSlotValues(botName, botAlias, sequence, interaction, lexParams, lexResponse, requestId) {
@@ -284,15 +288,21 @@ function waitOnSequenceTokens(waitBetweenChecksMillis, f) {
 
 	}, waitBetweenChecksMillis);
 }
+//logger variable in charge of creating the file. Calling logger.write() will create new entries until testing closes
+	var logger = FS.createWriteStream('Test-Results.text',{
+		flags:'a'
+	})
+	logger.write("Test Results - Chatbot Regression"+"\n")
 
 function runSequence(testConfig, sequenceIndex) {
-
+	logger.write("\n");	
 	const sequenceCount = testConfig.sequences.length;
 	const botName = testConfig.botName;
 	const botAlias = testConfig.botAlias;
 	const waitBetweenRequestsMillis = (testConfig.waitBetweenRequestsMillis ? testConfig.waitBetweenRequestsMillis : 0);
 	let sequence = testConfig.sequences[sequenceIndex];
-	let userId = (botName + '-' + (sequence.name ? sequence.name : '_') + '-' + ((new Date()).getTime()));
+	let userId = '100335699'; 
+	//(botName + '-' + (sequence.name ? sequence.name : '_') + '-' + ((new Date()).getTime()));
 
 	console.log(`I Test sequence ${(sequenceIndex + 1)} / ${sequenceCount} - ${sequence.name}`);
 	delayIfRequested(waitBetweenRequestsMillis, function() {
